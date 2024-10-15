@@ -4,6 +4,9 @@ import "dotenv/config";
 const app = express();
 const port = process.env.PORT;
 
+// handle the request for favicon to avoid showing errors on client side as we won't be providing the icon for now
+app.get("/favicon.ico", (_req, res) => res.status(204).end());
+
 app.get("/", (_req, res) => {
   res.send("This has been returned from server!");
 });
