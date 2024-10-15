@@ -6,14 +6,17 @@ const port = process.env.PORT;
 
 const fruits = [
   {
+    id: 1,
     name: "Orange",
     availableItems: 5,
   },
   {
+    id: 2,
     name: "Apple",
     availableItems: 8,
   },
   {
+    id: 3,
     name: "Watermelon",
     availableItems: 2,
   },
@@ -33,6 +36,16 @@ app.get("/fruits", (req, res) => {
   }
 
   res.json(filteredFruits);
+});
+
+app.get("/fruits/:id", (req, res) => {
+  const fruit = fruits.find(
+    (singleFruit) => singleFruit.id === parseInt(req.params.id)
+  );
+
+  if (!fruit) return res.status(404).send("Fruit not found");
+
+  res.json(fruit);
 });
 
 app.get("/", (_req, res) => {
