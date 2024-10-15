@@ -1,7 +1,8 @@
 import express from "express";
+import "dotenv/config";
 
 const app = express();
-const PORT = 3000;
+const port = process.env.PORT;
 
 app.get("/", (_req, res) => {
   res.send("This has been returned from server!");
@@ -18,6 +19,6 @@ app.use((err, _req, res, next) => {
   res.status(500).send("Internal server error - try again later");
 });
 
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
